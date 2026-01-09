@@ -1,0 +1,2 @@
+C:\Users\hp\source\repos\BloodLink\wwwroot\images\blood.png
+C:\Users\hp\source\repos\BloodLink\wwwroot\images\hero.png
