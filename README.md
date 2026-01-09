@@ -70,7 +70,7 @@ To provide a digital platform that helps hospitals and patients find blood donor
 
 Fatima Bibi
 
-## Contributors
+## Collaborators
 
 - Aiman Fareed
 - Anzala
