@@ -1,0 +1,56 @@
+﻿@model BloodLink.Models.Donor
+
+<div class="container mt-4">
+    <div class="card shadow border-secondary" style="width: 50%; margin: auto; background-color: #121212;">
+        <div class="card-header bg-warning text-dark text-center">
+            <h3>Edit Donor Details</h3>
+        </div>
+        <div class="card-body">
+            <form method="post">
+
+                <!-- CRITICAL: This hidden field tells SQL which ID to update -->
+                <input type="hidden" asp-for="Id" />
+
+                <!-- FULL NAME -->
+                <div class="mb-3">
+                    <label class="text-white">Full Name</label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <!-- BLOOD GROUP -->
+                <div class="mb-3">
+                    <label class="text-white">Blood Group</label>
+                    <select asp-for="BloodGroup" class="form-control form-select">
+                        <option value="">-- Select Group --</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+
+                <!-- CITY -->
+                <div class="mb-3">
+                    <label class="text-white">City</label>
+                    <input asp-for="City" class="form-control" />
+                </div>
+
+                <!-- PHONE -->
+                <div class="mb-3">
+                    <label class="text-white">Phone Number</label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-warning">Update Data</button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

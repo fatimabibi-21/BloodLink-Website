@@ -1,0 +1,69 @@
+﻿@model BloodLink.Models.BloodRequest
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-secondary" style="background-color: #121212;">
+                <div class="card-header bg-warning text-dark text-center">
+                    <h3 class="mb-0">Edit Blood Request</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+
+                        <!-- HIDDEN ID & DATE (To ensure we don't lose them) -->
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="RequestDate" />
+                        <input type="hidden" asp-for="Status" />
+
+                        <!-- PRIORITY  wise -->
+                        <div class="mb-3">
+                            <label class="text-white">Priority Level</label>
+                            <select asp-for="Priority" class="form-control form-select">
+                                <option value="Normal">Normal (Scheduled Procedure)</option>
+                                <option value="Urgent">Urgent (Immediate Need)</option>
+                            </select>
+                        </div>
+
+                        <!-- Patient Name -->
+                        <div class="mb-3">
+                            <label class="text-white">Patient Name</label>
+                            <input asp-for="PatientName" class="form-control" />
+                        </div>
+
+                        <!-- Blood Group -->
+                        <div class="mb-3">
+                            <label class="text-white">Required Blood Group</label>
+                            <select asp-for="BloodGroup" class="form-control form-select">
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+
+                        <!-- Hospital Name -->
+                        <div class="mb-3">
+                            <label class="text-white">Hospital / Location</label>
+                            <input asp-for="HospitalName" class="form-control" />
+                        </div>
+
+                        <!-- Contact Number -->
+                        <div class="mb-3">
+                            <label class="text-white">Contact Number</label>
+                            <input asp-for="ContactNumber" class="form-control" />
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-warning btn-lg shadow">Update Request</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

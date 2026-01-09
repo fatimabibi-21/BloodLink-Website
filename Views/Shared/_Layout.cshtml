@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BloodLink</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BloodLink.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body class="@(ViewData["Title"] as string == "Home Page" ? "home-page-body" : "")">
+    <header>
+        @{
+            var isHomePage = (ViewData["Title"] as string == "Home Page");
+        }
+
+        <!-- glass texture navbar on every screeen -->
+        <nav class="navbar navbar-expand-sm navbar-dark navbar-glass mb-3">
+            <div class="container-fluid px-4">
+
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold fs-3" asp-controller="Home" asp-action="Index">
+                    BloodLink <i class="bi bi-droplet-fill text-danger" style="filter: drop-shadow(0 0 5px rgba(255,0,0,0.8));"></i>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse">
+                    <!-- pages aligned to the RIGHT -->
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Request" asp-action="Index">Blood Requests</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Donor" asp-action="Index">Find Donors</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+
+                        <!-- header navbar Button -->
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-danger btn-sm rounded-pill px-3 shadow" asp-controller="Donor" asp-action="Create">Join Now</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- THE SPACER STRIP (OExcept the Home Pages) -->
+        <!-- This creates a dark background for the glass navbar to sit on, so it doesn't disappear against the white page content -->
+        @if (!isHomePage)
+        {
+            <div class="glass-header-spacer"></div>
+        }
+    </header>
+    @{
+        var isHome = (ViewData["Title"] as string == "Home Page");
+        var containerClass = isHome ? "container-fluid p-0" : "container";
+    }
+
+    <div class="@containerClass">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

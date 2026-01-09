@@ -1,0 +1,166 @@
+﻿@model List<BloodLink.Models.BloodRequest>
+
+@{
+    ViewData["Title"] = "Blood Requests";
+}
+
+<div class="container mt-3">
+
+    <!-- HEADER SECTION -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <!-- Left Side: Icon + Text Group -->
+        <div class="d-flex align-items-center">
+
+            <!-- big Red Icon Circle -->
+            <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center shadow-sm me-3"
+                 style="width: 60px; height: 60px;">
+                <i class="bi bi-clipboard2-pulse-fill fs-3"></i>
+            </div>
+
+            <!-- The Text Stack -->
+            <div>
+                <h2 class="text-danger fw-bold mb-0" style="line-height: 1;">
+                    Active Blood Requests
+                </h2>
+
+                <!-- The Stylish Subline -->
+                <div class="d-flex align-items-center mt-2">
+                    <!-- Small "Live" Badge -->
+                    <span class="badge bg-light text-danger border border-danger-subtle me-2" style="font-size: 0.7rem; letter-spacing: 1px;">
+                        LIVE BOARD
+                    </span>
+                    <!-- Description Text -->
+                    <small class="text-secondary fw-semibold" style="letter-spacing: 0.5px; font-size: 0.85rem;">
+                        Sorted by Priority &bull; Urgent Cases First
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: The Button -->
+        <a asp-action="Create" class="btn btn-danger shadow rounded-pill px-4 py-2 fw-bold">
+            <i class="bi bi-plus-lg me-1"></i> Post Request
+        </a>
+    </div>
+
+    <!-- Alert Cards Grid -->
+    <div class="row">
+        @if (Model.Count == 0)
+        {
+            <div class="col-12 text-center text-secondary mt-5">
+                <div class="p-5 border border-secondary border-dashed rounded opacity-50">
+                    <h4>No active requests.</h4>
+                    <p>Everyone is healthy!</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            @foreach (var req in Model)
+            {
+                <!-- LOGIC: Check if this specific request is Urgent -->
+                var isUrgent = (req.Priority == "Urgent");
+
+                <div class="col-md-6 col-lg-4 mb-4">
+
+                    <!--
+                       CARD STYLE LOGIC:
+                       - If Urgent: use 'card-urgent' (Pink bg, Red border)
+                       - If Normal: use 'card-normal' (White bg, Grey border)
+                    -->
+                    <div class="card h-100 shadow-sm position-relative @(isUrgent ? "card-urgent" : "card-normal")">
+
+                        <!-- ACTION BUTTONS (Edit & Delete) -->
+                        <div class="position-absolute top-0 end-0 p-3">
+                            <a asp-action="Edit" asp-route-id="@req.Id" class="text-secondary me-2" title="Edit">
+                                <i class="bi bi-pencil-square fs-5"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@req.Id" class="text-danger" onclick="return confirm('Delete this request?');" title="Delete">
+                                <i class="bi bi-trash fs-5"></i>
+                            </a>
+                        </div>
+
+                        <div class="card-body">
+
+                            <!-- PRIORITY BADGE (Shows clearly what type of request this is) -->
+                            <div class="mb-2">
+                                @if (isUrgent)
+                                {
+                                    <span class="badge bg-danger blink-animation shadow-sm">URGENT</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-info text-dark">NORMAL</span>
+                                }
+                            </div>
+
+                            <!-- Blood Group & Date -->
+                            <div class="mb-3">
+                                <span class="badge @(isUrgent ? "bg-danger" : "bg-secondary") rounded-pill fs-5 shadow-sm">
+                                    @req.BloodGroup
+                                </span>
+                                <span class="text-muted ms-2 small">
+                                    Posted: @(req.RequestDate.HasValue? req.RequestDate.Value.ToString("MMM dd") : "Unknown")
+                                </span>
+                            </div>
+
+                            <!-- Patient Name -->
+                            <h4 class="card-title text-dark fw-bold">@req.PatientName</h4>
+
+                            <!-- Hospital Name -->
+                            <p class="card-text text-secondary mb-3">
+                                <i class="bi bi-geo-alt-fill @(isUrgent ? "text-danger" : "text-muted")"></i>
+                                @req.HospitalName
+                            </p>
+
+                            <!-- Separator Line -->
+                            <hr style="border-top: 1px dashed @(isUrgent ? "#ffb3b3" : "#ccc");" />
+
+                            <!-- Contact Button -->
+                            <div class="d-grid">
+                                <a href="tel:@req.ContactNumber" class="btn @(isUrgent ? "btn-outline-danger" : "btn-outline-dark") fw-bold">
+                                    <i class="bi bi-telephone-fill"></i> @req.ContactNumber
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<style>
+    /* URGENT STYLE: Pink Background, Red Border */
+    .card-urgent {
+        background-color: #fff5f5;
+        border: 0;
+        border-left: 6px solid #dc3545 !important; /* Red Line */
+    }
+
+    /* NORMAL STYLE: White Background, Grey Border */
+    .card-normal {
+        background-color: #ffffff;
+        border: 0;
+        border-left: 6px solid #6c757d !important; /* Grey Line */
+    }
+
+    /* Force text color for readability */
+    .card-title {
+        color: #2c2c2c !important;
+    }
+
+    /* Blinking Animation for Urgent Badge */
+    .blink-animation {
+        animation: blinker 1.5s linear infinite;
+    }
+    @@keyframes blinker {
+        50%
+
+    {
+        opacity: 0.5;
+    }
+
+    }
+</style>

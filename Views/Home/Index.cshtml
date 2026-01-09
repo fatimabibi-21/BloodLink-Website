@@ -1,0 +1,163 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<!-- homepage padding only -->
+<style>
+    body {
+        padding-top: 0 !important;
+    }
+
+    /* slogan animate for smooth transition */
+    .slogan-main {
+        animation: fadeUp  900ms cubic-bezier(.2,.9,.2,1) both;
+        animation-delay: 200ms;
+        will-change: transform, opacity; 
+        margin-bottom:1.5rem;
+    }
+
+    .slogan-sub {
+        animation: fadeUp 900ms cubic-bezier(.2,.9,.2,1) both;
+        animation-delay: 180ms;
+        opacity: 0;
+        margin-bottom: 1.25rem;
+    }
+
+    .slogan-highlight {
+        display: inline-block;
+        color: #ff2d2d;
+        animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @@keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px) scale(0.995); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @@keyframes pulse {
+        0%   { transform: scale(1); text-shadow: 0 0 0 rgba(255,0,0,0); }
+        50%  { transform: scale(1.03); text-shadow: 0 0 18px rgba(220,53,69,0.45); }
+        100% { transform: scale(1); text-shadow: 0 0 0 rgba(255,0,0,0); }
+    }
+
+</style>
+
+<!-- HERO SECTION -->
+<div class="hero-section">
+    <!-- Video is in wwwroot/images/ folder -->
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+        <source src="/images/smooth_hero.mp4" type="video/mp4" />
+    </video>
+
+    <div class="hero-overlay">
+        <div class="hero-inner fade-up-animation"> 
+            <!-- Slogan (centered by .hero-overlay) -->
+            <div class="hero-main-slogan">
+                <h1 class="display-4 text-white fw-bold slogan-main">
+                    Every Drop Counted. Every Life Saved.
+                </h1>
+            </div>
+
+            <h2 class="display-6 text-white fw-light mb-5 slogan-sub" style="text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">
+                The Chain of Life Starts With <span class="slogan-highlight fw-bold">You</span>
+            </h2>
+        </div>
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-center gap-4">
+                <a href="/Donor/Index" class="btn btn-premium">
+                    <i class="bi bi-search"></i> Find Blood
+                </a>
+                <a href="/Donor/Create" class="btn btn-glass">
+                    <i class="bi bi-person-plus"></i> Join as Donor
+                </a>
+            </div>
+        
+    </div>
+</div>
+
+<!-- HOW IT WORKS (Glass Cards) -->
+<div class="container py-5 mt-4 mb-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-white">How <span class="text-danger">BloodLink</span> Works</h2>
+        <h3 class="text-secondary">Three simple steps to save a life today.</h3>
+    </div>
+
+    <div class="row g-4">
+        <!-- Card 1: Register Request -->
+        <div class="col-md-4">
+            <a href="/Request/Create" class="text-decoration-none text-reset" title="Register Request">
+                <div class="glass-card text-center h-100">
+                    <i class="bi bi-person-badge text-danger" style="font-size: 3rem;"></i>
+                    <h3 class="text-danger fw-bold"> Register Request</h3>
+                    <p class="text-secondary mt-2">
+                        Create a new emergency request. Provide patient details and contact information so donors can respond.
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Card 2: Find Donor -->
+        <div class="col-md-4">
+            <a href="/Donor/Index" class="text-decoration-none text-reset" title="Find Donor">
+                <div class="glass-card text-center h-100">
+                    <i class="bi bi-search text-danger" style="font-size: 3rem;"></i>
+                    <h3 class="text-white fw-bold"> Search Donor</h3>
+                    <p class="text-secondary mt-2">
+                        In an emergency, search our donor table to find the nearest available match by blood group and city.
+                    </p>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Card 3: Register as Donor -->
+        <div class="col-md-4">
+            <a href="/Donor/Create" class="text-decoration-none text-reset" title="Register as Donor">
+                <div class="glass-card text-center h-100">
+                    <i class="bi bi-heart-pulse text-danger" style="font-size: 3rem;"></i>
+                    <h3 class="text-danger fw-bold"> Connect</h3>
+                    <p class="text-secondary mt-2">
+                        Register as a donor to get notified and make yourself available to help when someone needs blood.
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- STATISTICS STRIP (Dark Background) -->
+<div class="container-fluid py-5" style="background-color: #050505; border-bottom: 1px solid #222;">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h2 class="stat-number">1,250+</h2>
+                <h3 class="text-secondary text-uppercase ls-2">Donors Registered</h3>
+                <p>One pint of blood can save up to three lives.</p>
+
+            </div>
+            <div class="col-md-4">
+                <h2 class="stat-number">45</h2>
+                <h3 class="text-secondary text-uppercase ls-2">Cities Covered</h3>
+                <p>Your data is protected. We connect people, not spam.</p>
+            </div>
+            <div class="col-md-4">
+                <h2 class="stat-number">24/7</h2>
+                <h3 class="text-secondary text-uppercase ls-2">Emergency Support</h3>
+                <p>Our platform is available around the clock for urgent needs.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="border-top footer text-muted mt-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+        <div class="mb-2 mb-md-0">
+            &copy; @DateTime.Now.Year - BloodLink
+        </div>
+
+        <div>
+            <a class="text-muted me-3" asp-controller="Donor" asp-action="Index">Donors</a>
+            <a class="text-muted me-3" asp-controller="Request" asp-action="Index">Requests</a>
+            <a class="text-muted" asp-controller="Home" asp-action="About">About</a>
+        </div>
+    </div>
+</footer>
