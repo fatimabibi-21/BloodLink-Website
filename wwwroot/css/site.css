@@ -1,0 +1,167 @@
+/* Global Dark Background for the Home Page */
+body.home-page-body {
+    background-color: #0a0a0a; /* Almost Black */
+    color: #e0e0e0; /* for Off-white text */
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* The Full-Screen Hero */
+.hero-section {
+    position: relative;
+    height: 100vh; 
+    width: 100vw; 
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* video element placed behind overlay and covers area */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 120%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+    filter: brightness(0.65) saturate(0.95);
+}
+
+/* The Shadow Overlay imp for reading text */
+.hero-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,1) 100%);
+    width: 100%;
+    padding-bottom: 80px; /* Space from bottom */
+    text-align: center;
+    position: relative;
+    z-index: 1; /* above the video */
+}
+
+/* glow effect for the txt and btn */
+.glow-text {
+    text-shadow: 0 0 20px rgba(220, 53, 69, 0.6);
+}
+
+.btn-premium {
+    background: #8b0000;
+    background: linear-gradient(90deg, #8b0000 0%, #dc3545 100%);
+    color: white;
+    border: none;
+    padding: 15px 50px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.4);
+    transition: all 0.3s ease;
+}
+
+    .btn-premium:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 40px rgba(220, 53, 69, 0.8);
+        color: white;
+    }
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 15px 50px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-glass:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: white;
+        color: white;
+    }
+
+/* glass effect cards for bottom content */
+.glass-card {
+    background: rgba(20, 20, 20, 0.6); /* Semi-transparent dark */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    transition: transform 0.3s;
+}
+
+    .glass-card:hover {
+        transform: translateY(-10px);
+        border-color: #dc3545; /* Red border on hover */
+    }
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #dc3545;
+}
+
+/*Navbar styling*/
+
+.bg-blood {
+    background: linear-gradient(90deg, #660000 0%, #b30000 100%); /* A rich gradient from dried blood color to fresh blood color */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* A shadow at the bottom to make it sit above the hero image */
+    border-bottom: none !important; /* Remove the border so it looks clean */
+}
+
+    /* Ensure links are white and bold */
+    .bg-blood .navbar-brand,
+    .bg-blood .nav-link {
+        color: white !important;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Text drop shadow for readability */
+    }
+
+        .bg-blood .nav-link:hover {
+            color: lightpink !important; /* Light pink on hover */
+        }
+
+.navbar-glass {
+    /* Slightly darker tint so it pops on all backgrounds */
+    background: rgba(0, 0, 0, 0) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+    .navbar-glass .nav-link {
+        color: white !important;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        transition: all 0.3s;
+    }
+
+        .navbar-glass .nav-link:hover {
+            color: red !important;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+        }
+/*space strip for pages except homepage*/
+.glass-header-spacer {
+    /* Height must match the approximate height of navbar */
+    height: 70px;
+    width: 100%;
+    background: linear-gradient(90deg, #660000 0%, #b30000 100%); /* A premium Blood color Gradient */
+    box-shadow: 0 10px 30px rgba(179, 0, 0, 0.3); /* Shadow to separate it from the white page content */
+    margin-bottom: 30px; /* Push the page content down a bit */
+}
+
+/* Accessibility: hide video for reduced motion users */
+@media (prefers-reduced-motion: reduce) {
+    .hero-video { display: none !important; }
+}
